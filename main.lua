@@ -10,13 +10,17 @@ local pixelColors = { magenta, red, green, blue, yellow, cyan }
 local white = { 255, 255, 255 }
 
 local numPixels = 25
+-- The reciprocal of the added width
+local colorPickerWidth = 6
 
 local screenHeight = 1080
-local screenWidth = screenHeight + screenHeight / (numPixels - 1)
+local screenWidth = screenHeight + screenHeight / colorPickerWidth
 
 local liney = 10
-local linex =
-	{ screenWidth - (screenHeight / numPixels) - liney / 2, screenWidth - (screenHeight / numPixels) + liney / 2 }
+local linex = {
+	screenWidth - (screenHeight / colorPickerWidth) - liney / 2,
+	screenWidth - (screenHeight / colorPickerWidth) + liney / 2,
+}
 local zigzagline = {}
 for i = 0, screenHeight / liney do
 	table.insert(zigzagline, linex[i % 2 + 1])
