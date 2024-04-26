@@ -1,13 +1,7 @@
-local magenta = { 255, 0, 255 }
-local red = { 255, 0, 0 }
-local green = { 0, 255, 0 }
-local blue = { 0, 0, 255 }
-local yellow = { 255, 255, 0 }
-local cyan = { 0, 255, 255 }
-
-local pixelColors = { magenta, red, green, blue, yellow, cyan }
--- Background color
-local white = { 255, 255, 255 }
+--Magenta, red, green, blue, yellow, cyan
+local pixelColors = { { 255, 0, 255 }, { 255, 0, 0 }, { 0, 255, 0 }, { 0, 0, 255 }, { 255, 255, 0 }, { 0, 255, 255 } }
+-- Line color
+local black = { 0, 0, 0 }
 
 local numPixels = 25
 -- The reciprocal of the added width
@@ -29,23 +23,41 @@ end
 
 math.randomseed(0)
 
+local rectangles = {}
+for i = 1, numPixels do
+	for j = 1, numPixels do
+		table.insert(rectangles, {
+			color = pixelColors[math.random(6)],
+			x = screenHeight / numPixels * (i - 1),
+			y = screenHeight / numPixels * (j - 1),
+		})
+	end
+end
+
 function love.load()
 	love.window.setMode(screenWidth, screenHeight)
+	love.window.setTitle("Pixel painter 🦙🖌️")
 	love.graphics.setBackgroundColor({ 0, 0, 0 })
 end
 
 function love.draw()
-	for i = 1, numPixels do
-		love.graphics.setColor(pixelColors[math.random(6)])
+	-- Draw pixels
+	for k, rect in pairs(rectangles) do
+		love.graphics.setColor(rect.color)
+		love.graphics.rectangle("fill", rect.x, rect.y, screenHeight / numPixels, screenHeight / numPixels)
+	end
+	-- Draw color picker
+	for i = 1, #pixelColors do
+		love.graphics.setColor(pixelColors[i])
 		love.graphics.rectangle(
 			"fill",
-			screenHeight / numPixels * (i - 1),
-			0,
-			screenHeight / numPixels,
-			screenHeight / numPixels
+			screenWidth - (screenWidth - screenHeight),
+			screenHeight / #pixelColors * (i - 1),
+			screenWidth - screenHeight,
+			screenHeight / #pixelColors
 		)
 	end
 	-- Draw line
-	love.graphics.setColor(white)
+	love.graphics.setColor(black)
 	love.graphics.line(zigzagline)
 end
