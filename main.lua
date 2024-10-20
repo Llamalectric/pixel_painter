@@ -42,6 +42,8 @@ function love.load()
 	love.graphics.setBackgroundColor(black)
 end
 
+-- Input
+
 function love.mousereleased(x, y, button, _, _)
 	if x > screenHeight and button == 1 then
 		-- Figure out which color was picked
@@ -53,7 +55,16 @@ function love.mousereleased(x, y, button, _, _)
 	end
 end
 
--- https://en.wikipedia.org/wiki/Flood_fill#Stack-based_recursive_implementation_(four-way)
+function love.keyreleased(key)
+	if key == "q" then
+		os.exit()
+	elseif string.match("123456", key) then
+		Change_color(pixelColors[tonumber(key)])
+	end
+end
+
+-- https://en.wikipedia.org/wiki/Flood_fill#Moving_the_recursion_into_a_data_structure
+-- Queue based
 function Change_color(colorTo)
 	local pixelsToChange = {}
 	table.insert(pixelsToChange, rectangles[1][1])
