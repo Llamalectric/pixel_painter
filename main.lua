@@ -25,14 +25,17 @@ math.randomseed(os.time())
 
 -- Table of pixels
 local rectangles = {}
+local rectLookup = {}
 for i = 1, numPixels do
 	table.insert(rectangles, {})
 	for j = 1, numPixels do
-		table.insert(rectangles[i], {
+		local rect = {
 			color = pixelColors[math.random(6)],
 			x = screenHeight / numPixels * (i - 1),
 			y = screenHeight / numPixels * (j - 1),
-		})
+		}
+		table.insert(rectangles[i], rect)
+		rectLookup[rect] = { col = i, row = j }
 	end
 end
 
@@ -73,7 +76,7 @@ function Change_color(colorTo)
 		local p = table.remove(pixelsToChange, 1)
 		if p.color == colorFrom then
 			p.color = colorTo
-			local loc = FindPixel(p)
+			local loc = rectLookup[p]
 			if loc.col ~= 1 then
 				table.insert(pixelsToChange, rectangles[loc.col - 1][loc.row])
 			end
@@ -85,17 +88,6 @@ function Change_color(colorTo)
 			end
 			if loc.row ~= numPixels then
 				table.insert(pixelsToChange, rectangles[loc.col][loc.row + 1])
-			end
-		end
-	end
-end
-
--- Optimize... O(n^2)
-function FindPixel(pixel)
-	for i, arr in ipairs(rectangles) do
-		for j, rect in ipairs(arr) do
-			if rect == pixel then
-				return { col = i, row = j }
 			end
 		end
 	end
