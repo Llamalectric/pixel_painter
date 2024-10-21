@@ -75,24 +75,30 @@ end
 -- Queue based
 function Change_color(colorTo)
 	local pixelsToChange = {}
+	local pixelsVisited = {}
 	table.insert(pixelsToChange, rectangles[1][1])
 	local colorFrom = rectangles[1][1].color
 	while #pixelsToChange > 0 do
 		local p = table.remove(pixelsToChange, 1)
+		pixelsVisited[p] = true
 		if p.color == colorFrom then
 			p.color = colorTo
 			local loc = rectLookup[p]
-			if loc.col ~= 1 then
+			if loc.col > 1 and not pixelsVisited[rectangles[loc.col - 1][loc.row]] then
 				table.insert(pixelsToChange, rectangles[loc.col - 1][loc.row])
+				pixelsVisited[rectangles[loc.col - 1][loc.row]] = true
 			end
-			if loc.col ~= numPixels then
+			if loc.col < numPixels and not pixelsVisited[rectangles[loc.col + 1][loc.row]] then
 				table.insert(pixelsToChange, rectangles[loc.col + 1][loc.row])
+				pixelsVisited[rectangles[loc.col + 1][loc.row]] = true
 			end
-			if loc.row ~= 1 then
+			if loc.row > 1 and not pixelsVisited[rectangles[loc.col][loc.row - 1]] then
 				table.insert(pixelsToChange, rectangles[loc.col][loc.row - 1])
+				pixelsVisited[rectangles[loc.col][loc.row - 1]] = true
 			end
-			if loc.row ~= numPixels then
+			if loc.row < numPixels and not pixelsVisited[rectangles[loc.col][loc.row + 1]] then
 				table.insert(pixelsToChange, rectangles[loc.col][loc.row + 1])
+				pixelsVisited[rectangles[loc.col][loc.row + 1]] = true
 			end
 		end
 	end
