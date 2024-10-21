@@ -84,21 +84,34 @@ function Change_color(colorTo)
 		if p.color == colorFrom then
 			p.color = colorTo
 			local loc = rectLookup[p]
-			if loc.col > 1 and not pixelsVisited[rectangles[loc.col - 1][loc.row]] then
-				table.insert(pixelsToChange, rectangles[loc.col - 1][loc.row])
-				pixelsVisited[rectangles[loc.col - 1][loc.row]] = true
+			-- We can throw away p and use it to keep the next part more concise
+			if loc.col > 1 then
+				p = rectangles[loc.col - 1][loc.row]
+				if not pixelsVisited[p] then
+					table.insert(pixelsToChange, p)
+					pixelsVisited[p] = true
+				end
 			end
-			if loc.col < numPixels and not pixelsVisited[rectangles[loc.col + 1][loc.row]] then
-				table.insert(pixelsToChange, rectangles[loc.col + 1][loc.row])
-				pixelsVisited[rectangles[loc.col + 1][loc.row]] = true
+			if loc.col < numPixels then
+				p = rectangles[loc.col + 1][loc.row]
+				if not pixelsVisited[p] then
+					table.insert(pixelsToChange, p)
+					pixelsVisited[p] = true
+				end
 			end
-			if loc.row > 1 and not pixelsVisited[rectangles[loc.col][loc.row - 1]] then
-				table.insert(pixelsToChange, rectangles[loc.col][loc.row - 1])
-				pixelsVisited[rectangles[loc.col][loc.row - 1]] = true
+			if loc.row > 1 then
+				p = rectangles[loc.col][loc.row - 1]
+				if not pixelsVisited[p] then
+					table.insert(pixelsToChange, p)
+					pixelsVisited[p] = true
+				end
 			end
-			if loc.row < numPixels and not pixelsVisited[rectangles[loc.col][loc.row + 1]] then
-				table.insert(pixelsToChange, rectangles[loc.col][loc.row + 1])
-				pixelsVisited[rectangles[loc.col][loc.row + 1]] = true
+			if loc.row < numPixels then
+				p = rectangles[loc.col][loc.row + 1]
+				if not pixelsVisited[p] then
+					table.insert(pixelsToChange, p)
+					pixelsVisited[p] = true
+				end
 			end
 		end
 	end
