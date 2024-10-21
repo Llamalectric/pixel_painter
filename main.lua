@@ -1,7 +1,6 @@
 -- Magenta, red, green, blue, yellow, cyan
 local pixelColors = { { 255, 0, 255 }, { 255, 0, 0 }, { 0, 255, 0 }, { 0, 0, 255 }, { 255, 255, 0 }, { 0, 255, 255 } }
--- Line color
-local black = { 0, 0, 0 }
+local lineColor = { 0, 0, 0 }
 
 local numPixels = 25
 -- The reciprocal of the added width
@@ -21,28 +20,34 @@ for i = 0, screenHeight / liney do
 	table.insert(zigzagline, liney * i)
 end
 
-math.randomseed(os.time())
-
--- Table of pixels
 local rectangles = {}
 local rectLookup = {}
-for i = 1, numPixels do
-	table.insert(rectangles, {})
-	for j = 1, numPixels do
-		local rect = {
-			color = pixelColors[math.random(6)],
-			x = screenHeight / numPixels * (i - 1),
-			y = screenHeight / numPixels * (j - 1),
-		}
-		table.insert(rectangles[i], rect)
-		rectLookup[rect] = { col = i, row = j }
+function StartGame(num)
+	numPixels = num or 25
+
+	math.randomseed(os.time())
+
+	-- Table of pixels
+	rectangles = {}
+	rectLookup = {}
+	for i = 1, numPixels do
+		table.insert(rectangles, {})
+		for j = 1, numPixels do
+			local rect = {
+				color = pixelColors[math.random(#pixelColors)],
+				x = screenHeight / numPixels * (i - 1),
+				y = screenHeight / numPixels * (j - 1),
+			}
+			table.insert(rectangles[i], rect)
+			rectLookup[rect] = { col = i, row = j }
+		end
 	end
 end
 
 function love.load()
 	love.window.setMode(screenWidth, screenHeight)
 	love.window.setTitle("Pixel painter 🦙🖌️")
-	love.graphics.setBackgroundColor(black)
+	love.graphics.setBackgroundColor(lineColor)
 end
 
 -- Input
@@ -53,7 +58,7 @@ function love.mousereleased(x, y, button, _, _)
 		-- y / 180 -> y / (screenHeight / pixelColors.length)
 		-- floor   -> we don't care where in the box was clicked, chop off decimal
 		-- + 1     -> lua is not zero indexed :(
-		local colorPicked = pixelColors[math.floor(y / 180) + 1]
+		local colorPicked = pixelColors[math.floor(y / (screenHeight / #pixelColors)) + 1]
 		Change_color(colorPicked)
 	end
 end
@@ -72,7 +77,7 @@ function Change_color(colorTo)
 	local pixelsToChange = {}
 	table.insert(pixelsToChange, rectangles[1][1])
 	local colorFrom = rectangles[1][1].color
-	while next(pixelsToChange) ~= nil do
+	while #pixelsToChange > 0 do
 		local p = table.remove(pixelsToChange, 1)
 		if p.color == colorFrom then
 			p.color = colorTo
@@ -102,8 +107,8 @@ function love.draw()
 		end
 	end
 	-- Draw color picker
-	for i = 1, #pixelColors do
-		love.graphics.setColor(pixelColors[i])
+	for i, color in ipairs(pixelColors) do
+		love.graphics.setColor(color)
 		love.graphics.rectangle(
 			"fill",
 			screenWidth - (screenWidth - screenHeight),
@@ -113,6 +118,8 @@ function love.draw()
 		)
 	end
 	-- Draw line
-	love.graphics.setColor(black)
+	love.graphics.setColor(lineColor)
 	love.graphics.line(zigzagline)
 end
+
+StartGame()
