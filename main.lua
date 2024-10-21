@@ -1,6 +1,14 @@
 -- Magenta, red, green, blue, yellow, cyan
-local pixelColors = { { 255, 0, 255 }, { 255, 0, 0 }, { 0, 255, 0 }, { 0, 0, 255 }, { 255, 255, 0 }, { 0, 255, 255 } }
-local lineColor = { 0, 0, 0 }
+local oldColors = { { 255, 0, 255 }, { 255, 0, 0 }, { 0, 255, 0 }, { 0, 0, 255 }, { 255, 255, 0 }, { 0, 255, 255 } }
+local pixelColors = {
+	{ 198 / 255, 160 / 255, 246 / 255 },
+	{ 202 / 255, 211 / 255, 245 / 255 },
+	{ 138 / 255, 173 / 255, 244 / 255 },
+	{ 166 / 255, 218 / 255, 149 / 255 },
+	{ 245 / 255, 169 / 255, 127 / 255 },
+	{ 237 / 255, 135 / 255, 150 / 255 },
+}
+local lineColor = { 36 / 255, 39 / 255, 58 / 255 }
 
 local numPixels = 25
 -- The reciprocal of the added width
@@ -84,7 +92,7 @@ function Change_color(colorTo)
 		if p.color == colorFrom then
 			p.color = colorTo
 			local loc = rectLookup[p]
-			-- We can throw away p and use it to keep the next part more concise
+			-- We can throw away p's value and use it to keep the next part more concise
 			if loc.col > 1 then
 				p = rectangles[loc.col - 1][loc.row]
 				if not pixelsVisited[p] then
