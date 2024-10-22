@@ -28,28 +28,36 @@ for i = 0, screenHeight / liney do
 	table.insert(zigzagline, liney * i)
 end
 
-local rectangles = {}
-local rectLookup = {}
 function StartGame(num)
-	numPixels = num or 25
+	numPixels = num or 16
+	TurnsLeft = numPixels + 11
 
 	math.randomseed(os.time())
 
 	-- Table of pixels
-	rectangles = {}
-	rectLookup = {}
+	Rectangles = {}
+	RectLookup = {}
 	for i = 1, numPixels do
-		table.insert(rectangles, {})
+		table.insert(Rectangles, {})
 		for j = 1, numPixels do
 			local rect = {
 				color = pixelColors[math.random(#pixelColors)],
 				x = screenHeight / numPixels * (i - 1),
 				y = screenHeight / numPixels * (j - 1),
 			}
-			table.insert(rectangles[i], rect)
-			rectLookup[rect] = { col = i, row = j }
+			table.insert(Rectangles[i], rect)
+			RectLookup[rect] = { col = i, row = j }
 		end
 	end
+end
+
+function EndGame(won)
+	if won then
+		print("You won!")
+	else
+		print("You lost :(")
+	end
+	StartGame()
 end
 
 function love.load()
@@ -67,7 +75,7 @@ function love.mousereleased(x, y, button, _, _)
 		-- floor   -> we don't care where in the box was clicked, chop off decimal
 		-- + 1     -> lua is not zero indexed :(
 		local colorPicked = pixelColors[math.floor(y / (screenHeight / #pixelColors)) + 1]
-		Change_color(colorPicked)
+		ChangeColor(colorPicked)
 	end
 end
 
@@ -75,47 +83,47 @@ function love.keyreleased(key)
 	if key == "q" then
 		os.exit()
 	elseif string.match("123456", key) then
-		Change_color(pixelColors[tonumber(key)])
+		ChangeColor(pixelColors[tonumber(key)])
 	end
 end
 
 -- https://en.wikipedia.org/wiki/Flood_fill#Moving_the_recursion_into_a_data_structure
 -- Queue based
-function Change_color(colorTo)
+function ChangeColor(colorTo)
 	local pixelsToChange = {}
 	local pixelsVisited = {}
-	table.insert(pixelsToChange, rectangles[1][1])
-	local colorFrom = rectangles[1][1].color
+	table.insert(pixelsToChange, Rectangles[1][1])
+	local colorFrom = Rectangles[1][1].color
 	while #pixelsToChange > 0 do
 		local p = table.remove(pixelsToChange, 1)
 		pixelsVisited[p] = true
 		if p.color == colorFrom then
 			p.color = colorTo
-			local loc = rectLookup[p]
+			local loc = RectLookup[p]
 			-- We can throw away p's value and use it to keep the next part more concise
 			if loc.col > 1 then
-				p = rectangles[loc.col - 1][loc.row]
+				p = Rectangles[loc.col - 1][loc.row]
 				if not pixelsVisited[p] then
 					table.insert(pixelsToChange, p)
 					pixelsVisited[p] = true
 				end
 			end
 			if loc.col < numPixels then
-				p = rectangles[loc.col + 1][loc.row]
+				p = Rectangles[loc.col + 1][loc.row]
 				if not pixelsVisited[p] then
 					table.insert(pixelsToChange, p)
 					pixelsVisited[p] = true
 				end
 			end
 			if loc.row > 1 then
-				p = rectangles[loc.col][loc.row - 1]
+				p = Rectangles[loc.col][loc.row - 1]
 				if not pixelsVisited[p] then
 					table.insert(pixelsToChange, p)
 					pixelsVisited[p] = true
 				end
 			end
 			if loc.row < numPixels then
-				p = rectangles[loc.col][loc.row + 1]
+				p = Rectangles[loc.col][loc.row + 1]
 				if not pixelsVisited[p] then
 					table.insert(pixelsToChange, p)
 					pixelsVisited[p] = true
@@ -123,11 +131,30 @@ function Change_color(colorTo)
 			end
 		end
 	end
+	if CheckWin(colorTo) then
+		EndGame(true)
+	else
+		if TurnsLeft <= 0 then
+			EndGame(false)
+		end
+		TurnsLeft = TurnsLeft - 1
+	end
+end
+
+function CheckWin(winningColor)
+	for _, arr in pairs(Rectangles) do
+		for _, rect in pairs(arr) do
+			if rect.color ~= winningColor then
+				return false
+			end
+		end
+	end
+	return true
 end
 
 function love.draw()
 	-- Draw pixels
-	for _, arr in pairs(rectangles) do
+	for _, arr in pairs(Rectangles) do
 		for _, rect in pairs(arr) do
 			love.graphics.setColor(rect.color)
 			love.graphics.rectangle("fill", rect.x, rect.y, screenHeight / numPixels, screenHeight / numPixels)
