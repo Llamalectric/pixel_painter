@@ -1,5 +1,5 @@
 -- Magenta, red, green, blue, yellow, cyan
-local oldColors = { { 255, 0, 255 }, { 255, 0, 0 }, { 0, 255, 0 }, { 0, 0, 255 }, { 255, 255, 0 }, { 0, 255, 255 } }
+-- local oldColors = { { 255, 0, 255 }, { 255, 0, 0 }, { 0, 255, 0 }, { 0, 0, 255 }, { 255, 255, 0 }, { 0, 255, 255 } }
 local pixelColors = {
 	{ 198 / 255, 160 / 255, 246 / 255 },
 	{ 202 / 255, 211 / 255, 245 / 255 },
@@ -10,27 +10,19 @@ local pixelColors = {
 }
 local lineColor = { 36 / 255, 39 / 255, 58 / 255 }
 
-local numPixels = 25
+local numPixels = 16
 -- The reciprocal of the added width
 local colorPickerWidth = 6
 
+local canvasHeight = 750
+local canvasStrokeWidth = 10
 local screenHeight = 1080
-local screenWidth = screenHeight + (screenHeight / colorPickerWidth)
-
-local liney = 10
-local linex = {
-	screenWidth - (screenHeight / colorPickerWidth) - liney / 2,
-	screenWidth - (screenHeight / colorPickerWidth) + liney / 2,
-}
-local zigzagline = {}
-for i = 0, screenHeight / liney do
-	table.insert(zigzagline, linex[i % 2 + 1])
-	table.insert(zigzagline, liney * i)
-end
+local screenWidth = screenHeight
 
 function StartGame(num)
 	numPixels = num or 16
 	TurnsLeft = numPixels + 11
+	PixelSize = (canvasHeight - 2 * canvasStrokeWidth) / numPixels
 
 	math.randomseed(os.time())
 
@@ -42,8 +34,8 @@ function StartGame(num)
 		for j = 1, numPixels do
 			local rect = {
 				color = pixelColors[math.random(#pixelColors)],
-				x = screenHeight / numPixels * (i - 1),
-				y = screenHeight / numPixels * (j - 1),
+				x = PixelSize * (i - 1) + 10,
+				y = PixelSize * (j - 1) + 10,
 			}
 			table.insert(Rectangles[i], rect)
 			RectLookup[rect] = { col = i, row = j }
@@ -63,13 +55,14 @@ end
 function love.load()
 	love.window.setMode(screenWidth, screenHeight)
 	love.window.setTitle("Pixel painter 🦙🖌️")
-	love.graphics.setBackgroundColor(lineColor)
+	love.graphics.setBackgroundColor({ 1, 1, 1 })
+	BG = love.graphics.newImage("img/background.png")
 end
 
 -- Input
 
 function love.mousereleased(x, y, button, _, _)
-	if x > screenHeight and button == 1 then
+	if x > canvasHeight and button == 1 then
 		-- Figure out which color was picked
 		-- y / 180 -> y / (screenHeight / pixelColors.length)
 		-- floor   -> we don't care where in the box was clicked, chop off decimal
@@ -153,11 +146,13 @@ function CheckWin(winningColor)
 end
 
 function love.draw()
+	-- Draw background
+	love.graphics.draw(BG)
 	-- Draw pixels
 	for _, arr in pairs(Rectangles) do
 		for _, rect in pairs(arr) do
 			love.graphics.setColor(rect.color)
-			love.graphics.rectangle("fill", rect.x, rect.y, screenHeight / numPixels, screenHeight / numPixels)
+			love.graphics.rectangle("fill", rect.x, rect.y, PixelSize, PixelSize)
 		end
 	end
 	-- Draw color picker
@@ -165,15 +160,12 @@ function love.draw()
 		love.graphics.setColor(color)
 		love.graphics.rectangle(
 			"fill",
-			screenWidth - (screenWidth - screenHeight),
+			screenWidth - (screenWidth - canvasHeight),
 			screenHeight / #pixelColors * (i - 1),
-			screenWidth - screenHeight,
+			screenWidth - canvasHeight,
 			screenHeight / #pixelColors
 		)
 	end
-	-- Draw line
-	love.graphics.setColor(lineColor)
-	love.graphics.line(zigzagline)
 end
 
 StartGame()
