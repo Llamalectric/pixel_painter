@@ -68,7 +68,9 @@ function love.mousereleased(x, y, button, _, _)
 		-- floor   -> we don't care where in the box was clicked, chop off decimal
 		-- + 1     -> lua is not zero indexed :(
 		local colorPicked = pixelColors[math.floor(y / (screenHeight / #pixelColors)) + 1]
-		ChangeColor(colorPicked)
+		if colorPicked ~= Rectangles[1][1].color then
+			ChangeColor(colorPicked)
+		end
 	end
 end
 
