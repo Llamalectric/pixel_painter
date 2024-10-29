@@ -8,11 +8,9 @@ local pixelColors = {
 	{ 245 / 255, 169 / 255, 127 / 255 },
 	{ 237 / 255, 135 / 255, 150 / 255 },
 }
-local lineColor = { 36 / 255, 39 / 255, 58 / 255 }
+local black = { 36 / 255, 39 / 255, 58 / 255 }
 
 local numPixels = 16
--- The reciprocal of the added width
-local colorPickerWidth = 6
 
 local canvasHeight = 750
 local canvasStrokeWidth = 10
@@ -158,10 +156,11 @@ function CheckWin(winningColor)
 end
 
 function love.draw()
+	love.graphics.setColor({ 1, 1, 1 })
 	-- Draw background
 	love.graphics.draw(BG)
 	-- Draw Turns Left
-	love.graphics.setColor({ 1, 1, 1 })
+	love.graphics.setColor({ 202 / 1, 211 / 1, 245 / 1 })
 	love.graphics.print(txtTurns, screenWidth / 10, screenHeight - (screenHeight / 5))
 	-- Draw pixels
 	for _, arr in pairs(Rectangles) do

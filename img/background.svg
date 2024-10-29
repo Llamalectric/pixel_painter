@@ -27,9 +27,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
-     inkscape:zoom="22.627417"
-     inkscape:cx="369.19813"
-     inkscape:cy="370.54605"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="196.57568"
+     inkscape:cy="787.89373"
      inkscape:window-width="1916"
      inkscape:window-height="1128"
      inkscape:window-x="0"
@@ -188,7 +188,7 @@
        y="4.99999"
        rx="5.2951828e-14" />
     <rect
-       style="mix-blend-mode:normal;fill:none;stroke:#2e1200;stroke-width:9.99998;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:0.79765093"
+       style="mix-blend-mode:normal;fill:none;stroke:#f5a97f;stroke-width:9.99998;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:0.79607844"
        id="rect29"
        width="740"
        height="740"
@@ -204,7 +204,7 @@
        y="750"
        rx="5.3307209e-14" />
     <rect
-       style="fill:#2e1200;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.797651;fill-opacity:0.79607844"
+       style="fill:#f5a97f;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.797651;fill-opacity:0.79607844"
        id="rect38"
        width="750"
        height="330.00003"
