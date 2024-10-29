@@ -18,6 +18,8 @@ local canvasHeight = 750
 local canvasStrokeWidth = 10
 local screenHeight = 1080
 local screenWidth = screenHeight
+local font
+local txtTurns
 
 function StartGame(num)
 	numPixels = num or 16
@@ -45,9 +47,9 @@ end
 
 function EndGame(won)
 	if won then
-		print("You won!")
+		txtTurns = "You Won! :)"
 	else
-		print("You lost :(")
+		txtTurns = "You lost :("
 	end
 	StartGame()
 end
@@ -57,6 +59,9 @@ function love.load()
 	love.window.setTitle("Pixel painter 🦙🖌️")
 	love.graphics.setBackgroundColor({ 1, 1, 1 })
 	BG = love.graphics.newImage("img/background.png")
+	font = love.graphics.newFont(72)
+	love.graphics.setFont(font)
+	txtTurns = "Turns Left: " .. TurnsLeft
 end
 
 -- Input
@@ -78,7 +83,10 @@ function love.keyreleased(key)
 	if key == "q" then
 		os.exit()
 	elseif string.match("123456", key) then
-		ChangeColor(pixelColors[tonumber(key)])
+		local colorPicked = pixelColors[tonumber(key)]
+		if colorPicked ~= Rectangles[1][1].color then
+			ChangeColor(colorPicked)
+		end
 	end
 end
 
@@ -131,8 +139,10 @@ function ChangeColor(colorTo)
 	else
 		if TurnsLeft <= 0 then
 			EndGame(false)
+		else
+			TurnsLeft = TurnsLeft - 1
+			txtTurns = "Turns Left: " .. TurnsLeft
 		end
-		TurnsLeft = TurnsLeft - 1
 	end
 end
 
@@ -150,6 +160,9 @@ end
 function love.draw()
 	-- Draw background
 	love.graphics.draw(BG)
+	-- Draw Turns Left
+	love.graphics.setColor({ 1, 1, 1 })
+	love.graphics.print(txtTurns, screenWidth / 10, screenHeight - (screenHeight / 5))
 	-- Draw pixels
 	for _, arr in pairs(Rectangles) do
 		for _, rect in pairs(arr) do
