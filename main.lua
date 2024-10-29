@@ -8,7 +8,6 @@ local pixelColors = {
 	{ 245 / 255, 169 / 255, 127 / 255 },
 	{ 237 / 255, 135 / 255, 150 / 255 },
 }
-local black = { 36 / 255, 39 / 255, 58 / 255 }
 
 local numPixels = 16
 
@@ -80,7 +79,8 @@ end
 function love.keyreleased(key)
 	if key == "q" then
 		os.exit()
-	elseif string.match("123456", key) then
+	-- Check that string is only a digit from 1-6
+	elseif string.match(key, "^[123456]$") then
 		local colorPicked = pixelColors[tonumber(key)]
 		if colorPicked ~= Rectangles[1][1].color then
 			ChangeColor(colorPicked)
