@@ -16,10 +16,20 @@ local canvasStrokeWidth = 10
 local screenHeight = 1080
 local screenWidth = screenHeight
 local font
-local txtTurns
+-- Turn counter, also used for difficulty message box title
+local txtTurns = "New game"
 
-function StartGame(num)
-	numPixels = num or 16
+function StartGame()
+	local difficulty = love.window.showMessageBox(txtTurns, "Choose your difficulty:", { "Easy", "Normal", "Hard" })
+	if difficulty == 1 then
+		numPixels = 12
+	elseif difficulty == 2 then
+		numPixels = 16
+	elseif difficulty == 3 then
+		numPixels = 21
+	else
+		numPixels = 16
+	end
 	TurnsLeft = numPixels + 11
 	PixelSize = (canvasHeight - 2 * canvasStrokeWidth) / numPixels
 
@@ -160,7 +170,8 @@ function love.draw()
 	-- Draw background
 	love.graphics.draw(BG)
 	-- Draw Turns Left
-	love.graphics.setColor({ 202 / 1, 211 / 1, 245 / 1 })
+	--love.graphics.setColor({ 202 / 255, 211 / 255, 245 / 255 })
+	love.graphics.setColor({ 36 / 255, 39 / 255, 58 / 255 })
 	love.graphics.print(txtTurns, screenWidth / 10, screenHeight - (screenHeight / 5))
 	-- Draw pixels
 	for _, arr in pairs(Rectangles) do
