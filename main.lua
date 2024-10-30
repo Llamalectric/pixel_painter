@@ -11,10 +11,11 @@ local pixelColors = {
 
 local numPixels = 16
 
-local canvasHeight = 750
-local canvasStrokeWidth = 10
-local screenHeight = 1080
+local screenHeight = 512
 local screenWidth = screenHeight
+-- 2/3 of screenHeight
+local canvasHeight = screenHeight / 3 * 2
+local canvasStrokeWidth = 10
 local font
 -- Turn counter, also used for difficulty message box title
 local txtTurns = "New game"
@@ -66,7 +67,7 @@ function love.load()
 	love.window.setTitle("Pixel painter 🦙🖌️")
 	love.graphics.setBackgroundColor({ 1, 1, 1 })
 	BG = love.graphics.newImage("img/background.png")
-	font = love.graphics.newFont(72)
+	font = love.graphics.newFont(math.floor(screenHeight / 15))
 	love.graphics.setFont(font)
 	txtTurns = "Turns Left: " .. TurnsLeft
 end

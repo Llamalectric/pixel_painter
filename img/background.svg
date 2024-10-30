@@ -10,8 +10,8 @@
    inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
    sodipodi:docname="background.svg"
    inkscape:export-filename="background.png"
-   inkscape:export-xdpi="96"
-   inkscape:export-ydpi="96"
+   inkscape:export-xdpi="42.666668"
+   inkscape:export-ydpi="42.666668"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -27,9 +27,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="364.16"
-     inkscape:cy="716.29917"
+     inkscape:zoom="0.99999999"
+     inkscape:cx="682.50001"
+     inkscape:cy="496.5"
      inkscape:window-width="1916"
      inkscape:window-height="1128"
      inkscape:window-x="0"
@@ -43,7 +43,7 @@
        xlink:href="#Wood texture"
        preserveAspectRatio="xMidYMid"
        id="pattern38"
-       patternTransform="matrix(0.10611581,0.39602959,-0.39602959,0.10611581,48.441815,46.562113)"
+       patternTransform="matrix(0.15280677,1.2960968,-0.57028261,0.34728809,69.756214,-2302.1602)"
        x="0"
        y="0" />
     <pattern
@@ -180,7 +180,7 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="mix-blend-mode:normal;fill:none;stroke:url(#pattern29);stroke-width:9.99998;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       style="display:none;mix-blend-mode:normal;fill:none;stroke:url(#pattern29);stroke-width:9.99998;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
        id="rect1"
        width="740"
        height="740"
@@ -188,7 +188,7 @@
        y="4.99999"
        rx="5.2951828e-14" />
     <rect
-       style="mix-blend-mode:normal;fill:none;stroke:#f4dbd6;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:0.79607844"
+       style="display:none;mix-blend-mode:normal;fill:none;stroke:#f4dbd6;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:0.796078"
        id="rect29"
        width="740"
        height="740"
@@ -196,21 +196,21 @@
        y="4.99999"
        rx="5.2951828e-14" />
     <rect
-       style="fill:url(#pattern38);stroke:#2e1200;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.797651;fill-opacity:1"
+       style="fill:url(#pattern38);fill-opacity:1;stroke:#2e1200;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.797651"
        id="rect34"
-       width="750"
-       height="330.00003"
+       width="1080"
+       height="1080"
        x="0"
-       y="750"
-       rx="5.3307209e-14" />
+       y="0"
+       rx="7.6762381e-14" />
     <rect
-       style="fill:#f4dbd6;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.797651;fill-opacity:0.79607844"
+       style="fill:#f4dbd6;fill-opacity:0.796078;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.797651"
        id="rect38"
-       width="750"
-       height="330.00003"
+       width="1080"
+       height="1080"
        x="0"
-       y="750"
-       rx="5.3307209e-14"
-       ry="29.134901" />
+       y="0"
+       rx="7.6762374e-14"
+       ry="95.350578" />
   </g>
 </svg>
