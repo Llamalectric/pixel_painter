@@ -16,6 +16,16 @@ local screenWidth = screenHeight
 -- 2/3 of screenHeight
 local canvasHeight = screenHeight / 3 * 2
 local canvasStrokeWidth = 10
+
+-- TODO: tie to screenHeight
+local paletteLocs = {
+	{ x = 360, y = 375, radx = 20, rady = 23 },
+	{ x = 400, y = 340, radx = 20, rady = 23 },
+	{ x = 440, y = 320, radx = 20, rady = 23 },
+	{ x = 485, y = 340, radx = 20, rady = 23 },
+	{ x = 475, y = 390, radx = 20, rady = 23 },
+	{ x = 440, y = 430, radx = 20, rady = 23 },
+}
 local font
 -- Turn counter, also used for difficulty message box title
 local txtTurns = "New game"
@@ -77,10 +87,17 @@ end
 function love.mousereleased(x, y, button, _, _)
 	if x > canvasHeight and button == 1 then
 		-- Figure out which color was picked
-		-- y / 180 -> y / (screenHeight / pixelColors.length)
-		-- floor   -> we don't care where in the box was clicked, chop off decimal
-		-- + 1     -> lua is not zero indexed :(
-		local colorPicked = pixelColors[math.floor(y / (screenHeight / #pixelColors)) + 1]
+		local colorPicked = Rectangles[1][1].color
+		for i, loc in ipairs(paletteLocs) do
+			if
+				x >= loc.x - loc.radx
+				and y >= loc.y - loc.rady
+				and x <= (loc.x + loc.radx)
+				and y <= (loc.y + loc.rady)
+			then
+				colorPicked = pixelColors[i]
+			end
+		end
 		if colorPicked ~= Rectangles[1][1].color then
 			ChangeColor(colorPicked)
 		end
@@ -182,15 +199,9 @@ function love.draw()
 		end
 	end
 	-- Draw color picker
-	for i, color in ipairs(pixelColors) do
-		love.graphics.setColor(color)
-		love.graphics.rectangle(
-			"fill",
-			screenWidth - (screenWidth - canvasHeight),
-			screenHeight / #pixelColors * (i - 1),
-			screenWidth - canvasHeight,
-			screenHeight / #pixelColors
-		)
+	for i, loc in ipairs(paletteLocs) do
+		love.graphics.setColor(pixelColors[i])
+		love.graphics.ellipse("fill", loc.x, loc.y, loc.radx, loc.rady)
 	end
 end
 
