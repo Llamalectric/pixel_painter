@@ -8,8 +8,8 @@
    version="1.1"
    id="svg1"
    inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
-   sodipodi:docname="background.svg"
-   inkscape:export-filename="background.png"
+   sodipodi:docname="palette.svg"
+   inkscape:export-filename="palette.png"
    inkscape:export-xdpi="45.511112"
    inkscape:export-ydpi="45.511112"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -27,17 +27,25 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
-     inkscape:zoom="0.70710677"
-     inkscape:cx="501.33871"
-     inkscape:cy="521.1377"
+     inkscape:zoom="4.3973202"
+     inkscape:cx="977.07235"
+     inkscape:cy="433.3321"
      inkscape:window-width="1916"
-     inkscape:window-height="1132"
+     inkscape:window-height="1128"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
      inkscape:current-layer="layer1" />
   <defs
      id="defs1">
+    <linearGradient
+       id="swatch3"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3" />
+    </linearGradient>
     <pattern
        inkscape:collect="always"
        xlink:href="#dirty texture"
@@ -302,7 +310,8 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     style="display:inline">
     <rect
        style="display:none;mix-blend-mode:normal;fill:none;stroke:url(#pattern29);stroke-width:9.99998;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
        id="rect1"
@@ -321,7 +330,8 @@
        rx="5.2951828e-14" />
     <g
        id="g44"
-       inkscape:label="bg">
+       inkscape:label="bg"
+       style="display:none">
       <rect
          style="display:inline;opacity:1;mix-blend-mode:normal;fill:url(#pattern41);fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.797651"
          id="rect11"
@@ -334,7 +344,7 @@
          clip-path="none"
          inkscape:label="texture" />
       <rect
-         style="display:inline;opacity:1;mix-blend-mode:normal;fill:#ffffff;fill-opacity:0.53193593;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.797651"
+         style="display:inline;opacity:1;mix-blend-mode:normal;fill:#ffffff;fill-opacity:0.531936;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.797651"
          id="rect43"
          width="1080"
          height="1080"
@@ -348,7 +358,8 @@
     <g
        id="g43"
        inkscape:label="palette"
-       transform="matrix(0.81086808,0,0,0.81086808,208.31297,208.29452)">
+       transform="matrix(0.81086808,0,0,0.81086808,208.31297,208.29452)"
+       style="display:inline">
       <rect
          style="display:inline;fill:#f4dbd6;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.797651"
          id="rect42"
@@ -379,5 +390,16 @@
          ry="95.350578"
          clip-path="url(#clipPath10)" />
     </g>
+    <path
+       id="rect3"
+       style="fill-opacity:1;stroke-width:2.099;stroke-linecap:round;stroke-linejoin:round;fill:#000000;stroke:#000000;stroke-opacity:1"
+       d="m 953.46844,387.49454 h 30.82419 v 37.1 37.10001 l 26.86997,37.1 -26.86997,37.1 v 37.10001 37.1 h -30.82419 v -37.1 -37.10001 l 26.87006,-37.1 -26.87006,-37.1 v -37.10001 z"
+       sodipodi:nodetypes="ccccccccccccccc" />
+    <circle
+       style="fill:#ff0000;fill-opacity:1;stroke-width:8.199;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke:#000000;stroke-opacity:1"
+       id="path3"
+       cx="970.50403"
+       cy="347.18942"
+       r="50" />
   </g>
 </svg>

@@ -77,6 +77,10 @@ function love.load()
 	love.window.setTitle("Pixel painter 🦙🖌️")
 	love.graphics.setBackgroundColor({ 1, 1, 1 })
 	BG = love.graphics.newImage("img/background.png")
+	PAINTBRUSH = love.graphics.newImage("img/paintbrush.png")
+	PAINTBRUSH_BRUSH = love.graphics.newImage("img/paintbrush_brush.png")
+	GLASS = love.graphics.newImage("img/glass.png")
+	PALETTE = love.graphics.newImage("img/palette.png")
 	font = love.graphics.newFont(math.floor(screenHeight / 15))
 	love.graphics.setFont(font)
 	txtTurns = "Turns Left: " .. TurnsLeft
@@ -189,8 +193,6 @@ function love.draw()
 	love.graphics.draw(BG)
 	-- Draw Turns Left
 	--love.graphics.setColor({ 202 / 255, 211 / 255, 245 / 255 })
-	love.graphics.setColor({ 36 / 255, 39 / 255, 58 / 255 })
-	love.graphics.print(txtTurns, screenWidth / 10, screenHeight - (screenHeight / 5))
 	-- Draw pixels
 	for _, arr in pairs(Rectangles) do
 		for _, rect in pairs(arr) do
@@ -198,11 +200,23 @@ function love.draw()
 			love.graphics.rectangle("fill", rect.x, rect.y, PixelSize, PixelSize)
 		end
 	end
+	love.graphics.setColor({ 1, 1, 1 })
+	love.graphics.draw(PAINTBRUSH)
+	love.graphics.setColor(Rectangles[1][1].color)
+	love.graphics.draw(PAINTBRUSH_BRUSH)
+	-- Shadow
+	love.graphics.setColor({ 36 / 255, 39 / 255, 58 / 255 })
+	love.graphics.draw(PALETTE, 0, 0, 0, 1, 1, 10, 2)
+	love.graphics.setColor({ 1, 1, 1 })
+	love.graphics.draw(GLASS)
+	love.graphics.draw(PALETTE)
 	-- Draw color picker
 	for i, loc in ipairs(paletteLocs) do
 		love.graphics.setColor(pixelColors[i])
 		love.graphics.ellipse("fill", loc.x, loc.y, loc.radx, loc.rady)
 	end
+	love.graphics.setColor({ 36 / 255, 39 / 255, 58 / 255 })
+	love.graphics.print(txtTurns, screenWidth / 10, screenHeight - (screenHeight / 5))
 end
 
 StartGame()
