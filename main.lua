@@ -42,6 +42,8 @@ local brushOffset = { x = 0, y = 0 }
 
 local pixelsVisited = {}
 
+local drawLightning = false
+
 function StartGame()
 	local difficulty = love.window.showMessageBox(txtTurns, "Choose your difficulty:", { "Easy", "Normal", "Hard" })
 	if difficulty == 1 then
@@ -93,6 +95,7 @@ function love.load()
 	PAINTBRUSH_BRUSH = love.graphics.newImage("img/paintbrush_brush.png")
 	GLASS = love.graphics.newImage("img/glass.png")
 	PALETTE = love.graphics.newImage("img/palette.png")
+	LIGHTNING = love.graphics.newImage("img/lightning.png")
 	font = love.graphics.newFont(math.floor(screenHeight / 15))
 	love.graphics.setFont(font)
 	txtTurns = "Turns Left: " .. TurnsLeft
@@ -166,6 +169,7 @@ end
 -- https://en.wikipedia.org/wiki/Flood_fill#Moving_the_recursion_into_a_data_structure
 -- Queue based
 function ChangeColor(colorTo)
+	drawLightning = true
 	local pixelsToChange = {}
 	pixelsVisited = {}
 	table.insert(pixelsToChange, Rectangles[1][1])
@@ -257,6 +261,10 @@ function love.draw()
 	love.graphics.setColor({ 1, 1, 1 })
 	love.graphics.draw(GLASS)
 	love.graphics.draw(PALETTE)
+	if drawLightning then
+		love.graphics.draw(LIGHTNING)
+		drawLightning = false
+	end
 	-- Draw color picker
 	for i, loc in ipairs(paletteLocs) do
 		love.graphics.setColor(pixelColors[i])

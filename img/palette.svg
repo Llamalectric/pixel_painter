@@ -9,7 +9,7 @@
    id="svg1"
    inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
    sodipodi:docname="palette.svg"
-   inkscape:export-filename="palette.png"
+   inkscape:export-filename="lightning.png"
    inkscape:export-xdpi="45.511112"
    inkscape:export-ydpi="45.511112"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -27,9 +27,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
-     inkscape:zoom="27.06701"
-     inkscape:cx="975.745"
-     inkscape:cy="613.38507"
+     inkscape:zoom="1"
+     inkscape:cx="678.5"
+     inkscape:cy="275.5"
      inkscape:window-width="1916"
      inkscape:window-height="1128"
      inkscape:window-x="0"
@@ -361,11 +361,11 @@
        style="display:inline">
       <path
          id="rect3"
-         style="fill-opacity:1;stroke-width:2.099;stroke-linecap:round;stroke-linejoin:round;fill:#24273a;stroke:#24273a;stroke-opacity:1"
+         style="fill:#24273a;fill-opacity:1;stroke:#24273a;stroke-width:2.099;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
          d="m 953.46844,387.49454 h 30.82419 v 37.1 37.10001 l 26.86997,37.1 -26.86997,37.1 v 37.10001 37.1 h -30.82419 v -37.1 -37.10001 l 26.87006,-37.1 -26.87006,-37.1 v -37.10001 z"
          sodipodi:nodetypes="ccccccccccccccc" />
       <circle
-         style="fill:#ed8796;fill-opacity:1;stroke-width:8.199;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke:#27273a;stroke-opacity:1"
+         style="fill:#ed8796;fill-opacity:1;stroke:#27273a;stroke-width:8.199;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
          id="path3"
          cx="970.50403"
          cy="347.18942"
@@ -375,9 +375,9 @@
        id="g43"
        inkscape:label="palette"
        transform="matrix(0.81086808,0,0,0.81086808,208.31297,208.29452)"
-       style="display:inline;stroke:#27273a;stroke-opacity:1;stroke-width:3.2200059;stroke-dasharray:none">
+       style="display:inline;stroke:#27273a;stroke-width:3.22001;stroke-dasharray:none;stroke-opacity:1">
       <rect
-         style="display:inline;fill:#f4dbd6;fill-opacity:1;stroke:#27273a;stroke-width:3.2200059;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         style="display:inline;fill:#f4dbd6;fill-opacity:1;stroke:#27273a;stroke-width:3.22001;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
          id="rect42"
          width="1080"
          height="1080"
@@ -387,7 +387,7 @@
          ry="95.350578"
          clip-path="url(#clipPath10)" />
       <rect
-         style="display:inline;fill:url(#pattern38);fill-opacity:1;stroke:#27273a;stroke-width:3.2200059;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         style="display:inline;fill:url(#pattern38);fill-opacity:1;stroke:#27273a;stroke-width:3.22001;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
          id="rect34"
          width="1080"
          height="1080"
@@ -396,7 +396,7 @@
          rx="7.6762381e-14"
          clip-path="url(#clipPath11)" />
       <rect
-         style="display:inline;fill:#f4dbd6;fill-opacity:0.796078;stroke:#27273a;stroke-width:3.2200059;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         style="display:inline;fill:#f4dbd6;fill-opacity:0.796078;stroke:#27273a;stroke-width:3.22001;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
          id="rect38"
          width="1080"
          height="1080"
@@ -406,5 +406,13 @@
          ry="95.350578"
          clip-path="url(#clipPath10)" />
     </g>
+    <path
+       id="path4"
+       style="fill:#8bd5ca;stroke:#cad3f5;stroke-width:1.311;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       inkscape:transform-center-x="-0.092659421"
+       inkscape:transform-center-y="-12.051663"
+       transform="translate(18.905121,-74.675821)"
+       d="m 893.30038,386.62929 -73.23882,-78.21997 82.80145,68.01622 m 41.78376,-16.74688 10.63466,-106.62641 3.34149,107.10333 m 42.70968,19.43239 62.727,-75.55654 -56.152,87.89869"
+       sodipodi:nodetypes="ccccccccc" />
   </g>
 </svg>

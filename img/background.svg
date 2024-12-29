@@ -28,14 +28,14 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
      inkscape:zoom="0.70710677"
-     inkscape:cx="501.33871"
-     inkscape:cy="521.1377"
+     inkscape:cx="501.33872"
+     inkscape:cy="521.13771"
      inkscape:window-width="1916"
-     inkscape:window-height="1132"
+     inkscape:window-height="1128"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="g44" />
   <defs
      id="defs1">
     <pattern
@@ -334,7 +334,7 @@
          clip-path="none"
          inkscape:label="texture" />
       <rect
-         style="display:inline;opacity:1;mix-blend-mode:normal;fill:#ffffff;fill-opacity:0.53193593;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.797651"
+         style="display:inline;opacity:1;mix-blend-mode:normal;fill:#cad3f5;fill-opacity:0.53333336;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.797651"
          id="rect43"
          width="1080"
          height="1080"
@@ -348,7 +348,8 @@
     <g
        id="g43"
        inkscape:label="palette"
-       transform="matrix(0.81086808,0,0,0.81086808,208.31297,208.29452)">
+       transform="matrix(0.81086808,0,0,0.81086808,208.31297,208.29452)"
+       style="display:none">
       <rect
          style="display:inline;fill:#f4dbd6;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.797651"
          id="rect42"
