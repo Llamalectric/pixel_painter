@@ -1,13 +1,19 @@
--- Magenta, red, green, blue, yellow, cyan
--- local oldColors = { { 255, 0, 255 }, { 255, 0, 0 }, { 0, 255, 0 }, { 0, 0, 255 }, { 255, 255, 0 }, { 0, 255, 255 } }
 local pixelColors = {
+	-- Mauve
 	{ 198 / 255, 160 / 255, 246 / 255 },
+	-- White
 	{ 202 / 255, 211 / 255, 245 / 255 },
+	-- Blue
 	{ 138 / 255, 173 / 255, 244 / 255 },
+	-- Green
 	{ 166 / 255, 218 / 255, 149 / 255 },
+	-- Peach
 	{ 245 / 255, 169 / 255, 127 / 255 },
+	-- Red
 	{ 237 / 255, 135 / 255, 150 / 255 },
 }
+
+local black = { 36 / 255, 39 / 255, 58 / 255 }
 
 local numPixels = 16
 
@@ -16,6 +22,8 @@ local screenWidth = screenHeight
 -- 2/3 of screenHeight
 local canvasHeight = screenHeight / 3 * 2
 local canvasStrokeWidth = 10
+
+local isBrushMoving = false
 
 -- TODO: tie to screenHeight
 local paletteLocs = {
@@ -29,6 +37,10 @@ local paletteLocs = {
 local font
 -- Turn counter, also used for difficulty message box title
 local txtTurns = "New game"
+
+local brushOffset = { x = 0, y = 0 }
+
+local pixelsVisited = {}
 
 function StartGame()
 	local difficulty = love.window.showMessageBox(txtTurns, "Choose your difficulty:", { "Easy", "Normal", "Hard" })
@@ -120,11 +132,42 @@ function love.keyreleased(key)
 	end
 end
 
+function MoveBrush(pix)
+	if RectLookup[pix] then
+		brushOffset.x = RectLookup[pix].col * PixelSize
+		brushOffset.y = RectLookup[pix].row * PixelSize
+	end
+end
+
+local pixels_counter = 1
+local pixelsToPaint = {}
+function love.update()
+	if isBrushMoving then
+		if #pixelsToPaint == 0 then
+			-- Populate animation list
+			for pix, _ in pairs(pixelsVisited) do
+				table.insert(pixelsToPaint, pix)
+			end
+		end
+		if pixels_counter < #pixelsToPaint then
+			MoveBrush(pixelsToPaint[pixels_counter])
+			pixels_counter = pixels_counter + 1
+		else
+			pixels_counter = 1
+			isBrushMoving = false
+		end
+	else
+		brushOffset.x = 0
+		brushOffset.y = 0
+		pixelsToPaint = {}
+	end
+end
+
 -- https://en.wikipedia.org/wiki/Flood_fill#Moving_the_recursion_into_a_data_structure
 -- Queue based
 function ChangeColor(colorTo)
 	local pixelsToChange = {}
-	local pixelsVisited = {}
+	pixelsVisited = {}
 	table.insert(pixelsToChange, Rectangles[1][1])
 	local colorFrom = Rectangles[1][1].color
 	while #pixelsToChange > 0 do
@@ -164,7 +207,11 @@ function ChangeColor(colorTo)
 			end
 		end
 	end
+	isBrushMoving = true
 	if CheckWin(colorTo) then
+		isBrushMoving = false
+		brushOffset.x = 0
+		brushOffset.y = 0
 		EndGame(true)
 	else
 		if TurnsLeft <= 0 then
@@ -201,11 +248,11 @@ function love.draw()
 		end
 	end
 	love.graphics.setColor({ 1, 1, 1 })
-	love.graphics.draw(PAINTBRUSH)
+	love.graphics.draw(PAINTBRUSH, 0, 0, 0, 1, 1, -brushOffset.x, -brushOffset.y)
 	love.graphics.setColor(Rectangles[1][1].color)
-	love.graphics.draw(PAINTBRUSH_BRUSH)
+	love.graphics.draw(PAINTBRUSH_BRUSH, 0, 0, 0, 1, 1, -brushOffset.x, -brushOffset.y)
 	-- Shadow
-	love.graphics.setColor({ 36 / 255, 39 / 255, 58 / 255 })
+	love.graphics.setColor(black)
 	love.graphics.draw(PALETTE, 0, 0, 0, 1, 1, 10, 2)
 	love.graphics.setColor({ 1, 1, 1 })
 	love.graphics.draw(GLASS)
@@ -215,7 +262,7 @@ function love.draw()
 		love.graphics.setColor(pixelColors[i])
 		love.graphics.ellipse("fill", loc.x, loc.y, loc.radx, loc.rady)
 	end
-	love.graphics.setColor({ 36 / 255, 39 / 255, 58 / 255 })
+	love.graphics.setColor(black)
 	love.graphics.print(txtTurns, screenWidth / 10, screenHeight - (screenHeight / 5))
 end
 
