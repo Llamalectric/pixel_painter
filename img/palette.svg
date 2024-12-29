@@ -27,9 +27,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
-     inkscape:zoom="1"
-     inkscape:cx="678.5"
-     inkscape:cy="275.5"
+     inkscape:zoom="2"
+     inkscape:cx="874.25"
+     inkscape:cy="505.25"
      inkscape:window-width="1916"
      inkscape:window-height="1128"
      inkscape:window-x="0"
@@ -358,7 +358,8 @@
     <g
        id="g3"
        inkscape:label="antenna"
-       style="display:inline">
+       style="display:inline"
+       transform="matrix(0.40172753,0,0,0.40172753,599.53533,365.04592)">
       <path
          id="rect3"
          style="fill:#24273a;fill-opacity:1;stroke:#24273a;stroke-width:2.099;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
@@ -408,11 +409,10 @@
     </g>
     <path
        id="path4"
-       style="fill:#8bd5ca;stroke:#cad3f5;stroke-width:1.311;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       style="display:inline;fill:#8bd5ca;stroke:#cad3f5;stroke-width:1.311;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
        inkscape:transform-center-x="-0.092659421"
        inkscape:transform-center-y="-12.051663"
-       transform="translate(18.905121,-74.675821)"
-       d="m 893.30038,386.62929 -73.23882,-78.21997 82.80145,68.01622 m 41.78376,-16.74688 10.63466,-106.62641 3.34149,107.10333 m 42.70968,19.43239 62.727,-75.55654 -56.152,87.89869"
+       d="m 948.31678,494.45347 -73.23882,-78.21997 82.80145,68.01622 m 25.03376,-12.49688 10.63466,-106.62641 3.34147,107.10333 m 20.3837,18.18239 62.727,-75.55654 -56.152,87.89869"
        sodipodi:nodetypes="ccccccccc" />
   </g>
 </svg>
